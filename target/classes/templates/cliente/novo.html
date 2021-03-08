@@ -1,0 +1,140 @@
+ <meta charset="UTF-8"/>
+  <div th:replace="includes/header"></div>
+  <div th:replace="includes/nav"></div>
+  	 <h1 class="display-4 text-center">Novo Cliente</h1>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="cliente-tab" data-toggle="tab" href="#cliente" role="tab" aria-controls="cliente" aria-selected="true">Cliente</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="contaBancaria-tab" data-toggle="tab" href="#contaBancaria" role="tab" aria-controls="contaBancaria" aria-selected="false">Conta Bancária</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="movimentacao-tab" data-toggle="tab" href="#movimentacao" role="tab" aria-controls="movimentacao" aria-selected="false">Movimentação</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+	<form th:action="@{/cliente/novo}" th:object="${pessoa}" method="POST">
+		<div class="form-group">
+			<input required th:field="${pessoa.id}"type="hidden" class="form-control" id="id">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-8">
+				<label for="nome">Nome</label>
+				<input required th:field="${pessoa.nome}" type="text" class="form-control" id="nome">
+			</div> 
+			<div class="form-group col-md-4">
+				<label for="telefone">Telefone</label>
+				<input required th:field="${pessoa.telefone}" type="text" class="form-control" id="telefone">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="cpf">CPF</label>
+				<input required th:field="${pessoa.cpf}" type="text" class="form-control" id="cpf">
+			</div>
+			<div class="form-group col-md-8">
+				<label for="cnpj">CNPJ</label>
+				<input required th:field="${pessoa.cnpj}" type="text" class="form-control" id="cnpj">
+			</div>
+		</div>
+			<div class="card bg-light">			
+				<div class="card-body">
+	    			<h5 class="card-title">Endereco</h5>
+					<input required th:field="${pessoa.endereco.id}"type="hidden" class="form-control">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="inputZip">CEP</label>
+							<input required th:field="${pessoa.endereco.cep}" type="text" class="form-control" id="inputZip">
+						</div>
+						<div class="form-group col-md-8">
+							<label for="rua">Rua</label>
+							<input required th:field="${pessoa.endereco.rua}" type="text" class="form-control" id="rua">
+						</div>
+						<div class="form-group col-md-1">
+							<label for="numero">Número</label>
+							<input required th:field="${pessoa.endereco.numero}" type="number" class="form-control" id="numero">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="complemento">Complemento</label>
+							<input required th:field="${pessoa.endereco.complemento}" type="text" class="form-control" id="complemento">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-5">
+							<label for="bairro">Bairro</label>
+							<input required th:field="${pessoa.endereco.bairro}" type="text" class="form-control" id="bairro">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="cidade">Cidade</label>
+							<input required th:field="${pessoa.endereco.cidade}" type="text" class="form-control" id="cidade">
+						</div>
+						<div class="form-group col-md-1">
+							<label for="uf">UF</label>
+							<select th:field="${pessoa.endereco.uf}" id="uf" class="form-control">
+								<option th:each="uf : ${T(com.xpto.util.Uf).values()}" th:value="${uf}" th:text="${uf.uf}"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div> <br>
+			<button type="submit" class="btn btn-success float-right">Salvar</button>
+	</form>
+  </div>
+  <div class="tab-pane fade" id="contaBancaria" role="tabpanel" aria-labelledby="contaBancaria-tab">
+	<form th:action="@{/contaBancaria/novo}" th:object="${contaBancaria}" method="POST">
+		<div class="form-group">
+			<input required th:field="${contaBancaria.id}" type="hidden" class="form-control"  > 
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-8">
+				<label for="nome">Agencia</label>
+				<input required th:field="${contaBancaria.agencia}" type="text" class="form-control" id="nome">
+			</div> 
+			<div class="form-group col-md-4">
+				<label for="telefone">Numero</label>
+				<input required th:field="${contaBancaria.numero}" type="text" class="form-control" id="telefone">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="cpf">Banco</label>
+				<input required th:field="${contaBancaria.banco}" type="text" class="form-control" id="cpf">
+			</div>
+			<div class="form-group col-md-8">
+				<label for="cnpj">Tipo</label>
+				<input required th:field="${contaBancaria.tipo}" type="text" class="form-control" id="cnpj">
+			</div>
+		</div>
+		<br>
+		<button type="submit" class="btn btn-success float-right">Salvar</button>
+	</form>
+  </div>
+  <div class="tab-pane fade" id="movimentacao" role="tabpanel" aria-labelledby="movimentacao-tab">  
+	<form th:action="@{/movimentacao/novo}" th:object="${movimentacao}" method="POST">
+		<div class="form-group">
+			<input required th:field="${movimentacao.id}" type="hidden" class="form-control"  > 
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-8">
+				<label for="valor">Valor</label>
+				<input required th:field="${movimentacao.valor}" type="number" class="form-control" id="valor">
+			</div> 
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				<label class="btn btn-success active"> 
+					<input type="radio" id="tipo" name="tipo" class="custom-control-input" value="credito" th:field="${movimentacao.tipo}"checked> Crédito
+					</label>
+				<label class="btn btn-danger">
+					<input type="radio" id="tipo" name="tipo" class="custom-control-input" value="debito" th:field="${movimentacao.tipo}" > Débito
+				</label> 
+			</div>
+		</div>
+		<br>
+		<button type="submit" class="btn btn-success float-right">Salvar</button>
+	</form>
+  </div>
+</div>
+<div th:replace="includes/footer"></div>

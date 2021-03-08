@@ -1,0 +1,26 @@
+ <meta charset="UTF-8"/>
+  <div th:replace="includes/header"></div>
+  <h1 class="display-4 text-center">XPTO</h1>
+	<div class="jumbotron">
+	  <h3 class="display-5">R$ 1.101,00</h3>
+	  <p class="lead">Receita</p>
+	  <hr class="my-4">
+	  <p>Célula Financeiro e Controladoria.</p>
+	  <a th:href="@{/cliente/novo}" class="btn btn-primary btn-lg" role="button">Novo Cliente</a>
+	</div>
+	<div class="card">
+	  <div class="card-body">
+	  <h5 class="card-title">Relatórios</h5>
+	    <button type="button" class="btn btn-primary">Saldo do cliente</button>
+		<button type="button" class="btn btn-secondary">Saldo do cliente X e período</button>
+		<button type="button" class="btn btn-success">Saldo de todos os clientes</button>
+		<button type="button" class="btn btn-danger">Receita da empresa por período</button>
+		<!--
+			<button type="button" class="btn btn-warning">Warning</button>
+			<button type="button" class="btn btn-info">Info</button>
+			<button type="button" class="btn btn-light">Light</button>
+			<button type="button" class="btn btn-dark">Dark</button> 
+		 -->
+	  </div>
+	</div>
+<div th:replace="includes/footer"></div>
